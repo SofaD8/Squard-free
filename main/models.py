@@ -69,8 +69,8 @@ class Team(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'Member'
-        verbose_name_plural = 'Members'
+        verbose_name = 'Team'
+        verbose_name_plural = 'Team'
         ordering = ['sort']
 
 
