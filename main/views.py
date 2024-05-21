@@ -10,4 +10,4 @@ def index(request):
         #for photos in item:
             #photos.save()
 
-    return render(request, 'index.html')
+    return render(request, 'main.html')
