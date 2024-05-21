@@ -12,8 +12,8 @@ class About(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'Specialty'
-        verbose_name_plural = 'Specialties'
+        verbose_name = 'About'
+        verbose_name_plural = 'About'
         ordering = ['sort']
 
 
