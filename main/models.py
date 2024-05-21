@@ -40,6 +40,10 @@ class PortfolioCategory(models.Model):
     def __str__(self):
         return self.name
 
+    def __iter__(self):
+        for item in self.photos.all():
+            yield item
+
     class Meta:
         verbose_name = 'Portfolio Category'
         verbose_name_plural = 'Portfolio Categories'
@@ -47,6 +51,7 @@ class PortfolioCategory(models.Model):
 
 
 class Photo(models.Model):
+    category = models.ForeignKey(PortfolioCategory, on_delete=models.CASCADE, related_name='photos', null=True, blank=True)
     sort = models.PositiveSmallIntegerField()
     photo = models.ImageField(upload_to='photo/', blank=True, null=True)
 
