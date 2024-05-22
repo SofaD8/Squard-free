@@ -11,10 +11,10 @@
             {% for item in team %}
                 <div class="col-lg-4 col-md-6">
                     <div class="member" data-aos="fade-up">
-                        <div class="pic"><img src="{{ team.photo.url }}" class="img-fluid" alt=""></div>
+                        <div class="pic"><img src="{{ item.photo.url }}" class="img-fluid" alt=""></div>
                         <div class="member-info">
-                            <h4>{{ team.name }}</h4>
-                            <span>{{ team.description }}</span>
+                            <h4>{{ item.name }}</h4>
+                            <span>{{ item.description }}</span>
                             <div class="social">
                                 <a href=""><i class="bi bi-twitter"></i></a>
                                 <a href=""><i class="bi bi-facebook"></i></a>
