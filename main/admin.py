@@ -21,9 +21,10 @@ class ServicesAdmin(admin.ModelAdmin):
 
 @admin.register(PortfolioCategory)
 class PortfolioCategoryAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'sort')
-    list_editable = ('name', 'sort')
+    list_display = ('id', 'name', 'sort', 'slug')
+    list_editable = ('name', 'sort', 'slug')
     search_fields = ('name',)
+    prepopulated_fields = {'slug': ('name',)}
 
 
 @admin.register(Photo)

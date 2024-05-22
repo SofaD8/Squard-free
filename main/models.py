@@ -41,8 +41,8 @@ class PortfolioCategory(models.Model):
         return self.name
 
     def __iter__(self):
-        for item in self.photos.all():
-            yield item
+        for photo in self.photos.all():
+            yield photo
 
     class Meta:
         verbose_name = 'Portfolio Category'

@@ -5,9 +5,14 @@ from .models import About, Services, PortfolioCategory, Photo, Team, Contact
 
 # Create your views here.
 def index(request):
-    #categories = PortfolioCategory.objects.all()
-    #for item in categories:
-        #for photos in item:
-            #photos.save()
+    categories = PortfolioCategory.objects.all()
 
-    return render(request, 'main.html')
+    context = {
+        'title_portfolio': 'Portfolio',
+        'p_portfolio': 'Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.',
+        'categories': categories,
+        'title_team': 'Team',
+        'p_team': 'Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.',
+    }
+
+    return render(request, 'main.html', context=context)
