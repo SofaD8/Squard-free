@@ -37,12 +37,12 @@ class PortfolioCategory(models.Model):
     slug = models.SlugField(max_length=30, blank=True, null=True)
     sort = models.PositiveSmallIntegerField()
 
+    def __iter__(self):
+        for photo in self.photo.all():
+            yield photo
+
     def __str__(self):
         return self.name
-
-    def __iter__(self):
-        for photo in self.photos.all():
-            yield photo
 
     class Meta:
         verbose_name = 'Portfolio Category'
@@ -51,7 +51,7 @@ class PortfolioCategory(models.Model):
 
 
 class Photo(models.Model):
-    category = models.ForeignKey(PortfolioCategory, on_delete=models.CASCADE, related_name='photos',
+    category = models.ForeignKey(PortfolioCategory, on_delete=models.CASCADE, related_name='photo',
                                  null=True, blank=True)
     sort = models.PositiveSmallIntegerField()
     photo = models.ImageField(upload_to='photo/', blank=True, null=True)
@@ -83,14 +83,14 @@ class Team(models.Model):
 class Contact(models.Model):
     name = models.CharField(max_length=30, unique=True, blank=True, null=True)
     email = models.EmailField(null=True, blank=True)
-    subject = RichTextField(blank=True, null=True)
-    message = RichTextField(blank=True, null=True)
+    subject = models.TextField(blank=True, null=True)
+    message = models.TextField(blank=True, null=True)
 
     is_confirmed = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.name} : {self.email}'
+        return f'{self.name} - {self.subject}'
 
     class Meta:
         verbose_name = 'Contact'

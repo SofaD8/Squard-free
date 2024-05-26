@@ -32,8 +32,8 @@ class PortfolioCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Photo)
 class PhotoAdmin(admin.ModelAdmin):
-    list_display = ('photo_src_tag', 'sort')
-    list_editable = ('sort',)
+    list_display = ('photo_src_tag', 'category', 'sort')
+    list_editable = ('sort', 'category')
     list_filter = ('category',)
     search_fields = ('sort',)
 
