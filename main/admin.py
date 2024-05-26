@@ -3,6 +3,9 @@ from .models import About, Services, PortfolioCategory, Photo, Team, Contact
 from django.utils.safestring import mark_safe
 
 
+admin.site.register(Contact)
+
+
 # Register your models here.
 @admin.register(About)
 class AboutAdmin(admin.ModelAdmin):
@@ -54,4 +57,3 @@ class TeamAdmin(admin.ModelAdmin):
     photo_src_tag.short_description = 'Team'
 
 
-admin.site.register(Contact)

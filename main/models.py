@@ -51,7 +51,8 @@ class PortfolioCategory(models.Model):
 
 
 class Photo(models.Model):
-    category = models.ForeignKey(PortfolioCategory, on_delete=models.CASCADE, related_name='photos', null=True, blank=True)
+    category = models.ForeignKey(PortfolioCategory, on_delete=models.CASCADE, related_name='photos',
+                                 null=True, blank=True)
     sort = models.PositiveSmallIntegerField()
     photo = models.ImageField(upload_to='photo/', blank=True, null=True)
 

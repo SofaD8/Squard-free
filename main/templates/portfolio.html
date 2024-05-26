@@ -1,4 +1,4 @@
-    <!-- ======= Portfolio Section ======= -->
+        <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio">
       <div class="container">
 
@@ -28,7 +28,7 @@
                             <img src="{{ photo.photo.url }}" class="img-fluid" alt="">
                             <div class="portfolio-links">
                                 <a href="{{ photo.photo.url }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
-                                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                                <a href="{% include 'portfolio-details.html' %}" title="More Details"><i class="bx bx-link"></i></a>
                             </div>
                         </div>
                    {% endfor %}
@@ -40,7 +40,7 @@
                             <img src="{{ photo.photo.url }}" class="img-fluid" alt="">
                             <div class="portfolio-links">
                                 <a href="{{ photo.photo.url }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
-                                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                                <a href="{% include 'portfolio-details.html' %}" title="More Details"><i class="bx bx-link"></i></a>
                             </div>
                         </div>
                     {% endfor %}
@@ -54,7 +54,7 @@
                             <img src="{{ photo.photo.url }}" class="img-fluid" alt="">
                             <div class="portfolio-links">
                                 <a href="{{ photo.photo.url }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i class="bx bx-plus"></i></a>
-                                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                                <a href="{% include 'portfolio-details.html' %}" title="More Details"><i class="bx bx-link"></i></a>
                             </div>
                         </div>
                     {% endfor %}
