@@ -1,5 +1,4 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.shortcuts import redirect
 from django.contrib import messages
 from .models import About, Services, PortfolioCategory, Photo, Team
 from .forms import ContactForm

@@ -1,29 +1,14 @@
 from django import forms
-from django.forms.utils import ErrorList
 from .models import Contact
 
 
 class ContactForm(forms.ModelForm):
-    def __init__(
-            self,
-            data=None,
-            files=None,
-            auto_id="id_%s",
-            prefix=None,
-            initial=None,
-            error_class=ErrorList,
-            label_suffix=None,
-            empty_permitted=False,
-            instance=None,
-            use_required_attribute=None,
-            renderer=None,
-    ):
-        super().__init__(data, files, auto_id, prefix, initial, error_class, label_suffix, empty_permitted, instance,
-                         use_required_attribute, renderer)
-        self.cleaned_data = None
-
-    def clean(self):
-        self.cleaned_data = super().clean()
+    def save(self, commit=True):
+        contact = super().save(commit=False)
+        contact.name = self.cleaned_data['name'].title()
+        if commit:
+            contact.save()
+        return contact
 
     class Meta:
         model = Contact
@@ -35,10 +20,10 @@ class ContactForm(forms.ModelForm):
             'message': forms.Textarea(attrs={'class': 'form-control', 'rows': '5', 'placeholder': 'Message'}),
         }
         labels = {
-            'name': 'name',
-            'email': 'email',
-            'subject': 'subject',
-            'message': 'message',
+            'name': 'Name',
+            'email': 'Email',
+            'subject': 'Subject',
+            'message': 'Message',
         }
         help_texts = {
             'email': 'example@example.com',
@@ -49,11 +34,3 @@ class ContactForm(forms.ModelForm):
             'subject': {'required': 'Please enter your subject'},
             'message': {'required': 'Please enter your message'},
         }
-
-
-
-
-
-
-
-
