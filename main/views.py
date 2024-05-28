@@ -33,30 +33,14 @@ class IndexView(TemplateView):
 
         return context
 
-    def post(self, request, *args, **kwargs):
-        if 'submit_form' in request.POST:
-            form = ContactForm(request.POST)
-            if form.is_valid():
-                form.save()
-                messages.success(request, 'Your message has been sent. Thank you!', extra_tags='contact')
-                return redirect('main:index')
-            else:
-                context = self.get_context_data()
-                context['form'] = form
-                messages.error(request, 'Please correct the errors.')
-                return self.render_to_response(context)
-
-        elif 'submit_newsletter' in request.POST:
-            newsletter = NewsletterForm(request.POST)
-            if newsletter.is_valid():
-                newsletter.save()
-                messages.success(request, 'You have signed up for a newsletter!', extra_tags='newsletter')
-                return redirect('main:index')
-            else:
-                context = self.get_context_data()
-                context['newsletter'] = newsletter
-                return self.render_to_response(context)
-
-        else:
-            context = self.get_context_data()
-            return self.render_to_response(context)
+    def post(self, request):
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Thank you!')
+            return redirect('main:index')
+        newsletter = NewsletterForm(request.POST)
+        if newsletter.is_valid():
+            newsletter.save()
+            messages.success(request, 'Thank you!')
+            return redirect('main:index')
