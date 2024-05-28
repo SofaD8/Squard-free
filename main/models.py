@@ -5,7 +5,7 @@ from ckeditor.fields import RichTextField
 # Create your models here.
 class About(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
-    description = models.TextField(max_length=500, null=True, blank=True)
+    description = RichTextField(null=True, blank=True)
     sort = models.PositiveSmallIntegerField()
 
     def __str__(self):
@@ -19,7 +19,7 @@ class About(models.Model):
 
 class Services(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
-    description = models.TextField(max_length=500, null=True, blank=True)
+    description = RichTextField(null=True, blank=True)
     is_visible = models.BooleanField(default=True)
     sort = models.PositiveSmallIntegerField()
 
@@ -96,3 +96,15 @@ class Contact(models.Model):
         verbose_name = 'Contact'
         verbose_name_plural = 'Contact'
         ordering = ['-date_created']
+
+
+class Newsletter(models.Model):
+    email = models.EmailField(unique=True, blank=True, null=True)
+
+    def __str__(self):
+        return self.email
+
+    class Meta:
+        verbose_name = 'Newsletter'
+        verbose_name_plural = 'Newsletters'
+        ordering = ['email']

@@ -1,15 +1,8 @@
 from django import forms
-from .models import Contact
+from .models import Contact, Newsletter
 
 
 class ContactForm(forms.ModelForm):
-    def save(self, commit=True):
-        contact = super().save(commit=False)
-        contact.name = self.cleaned_data['name'].title()
-        if commit:
-            contact.save()
-        return contact
-
     class Meta:
         model = Contact
         fields = ('name', 'email', 'subject', 'message')
@@ -34,3 +27,19 @@ class ContactForm(forms.ModelForm):
             'subject': {'required': 'Please enter your subject'},
             'message': {'required': 'Please enter your message'},
         }
+
+
+class NewsletterForm(forms.ModelForm):
+    class Meta:
+        model = Newsletter
+        fields = ('email',)
+        widgets = {
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'id': 'email', 'placeholder': 'Your Email'}),
+        }
+        labels = {'email': 'Email'}
+        help_texts = {'email': 'example@example.com'}
+        error_messages = {'email': {'required': 'Please enter your email'}}
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        return email
