@@ -7,9 +7,19 @@ from django.views.generic import TemplateView
 
 # Create your views here.
 class IndexView(TemplateView):
+    """
+        View for return the index page.
+        Attributes:
+            template_name (str): The name of the template to be used for rendering.
+    """
     template_name = 'main.html'
 
     def get_context_data(self, **kwargs):
+        """
+            Get the context data for return the template.
+            Returns:
+                 Dict[str, Any]: A dictionary containing the context data.
+        """
         context = super().get_context_data(**kwargs)
         about = About.objects.all()
         services = Services.objects.filter(is_visible=True)
@@ -34,6 +44,13 @@ class IndexView(TemplateView):
         return context
 
     def post(self, request):
+        """
+            Handle POST requests.
+            Args:
+                request: The HTTP request object.
+            Returns:
+                 Any: The HTTP response.
+        """
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()

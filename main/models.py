@@ -4,6 +4,9 @@ from ckeditor.fields import RichTextField
 
 # Create your models here.
 class About(models.Model):
+    """
+        Model representing information about the company or organization.
+    """
     name = models.CharField(max_length=100, null=True, blank=True)
     description = RichTextField(null=True, blank=True)
     sort = models.PositiveSmallIntegerField()
@@ -18,6 +21,9 @@ class About(models.Model):
 
 
 class Services(models.Model):
+    """
+        Model representing services offered by the company.
+    """
     name = models.CharField(max_length=100, null=True, blank=True)
     description = RichTextField(null=True, blank=True)
     is_visible = models.BooleanField(default=True)
@@ -33,6 +39,9 @@ class Services(models.Model):
 
 
 class PortfolioCategory(models.Model):
+    """
+       Model representing categories for the portfolio.
+    """
     name = models.CharField(max_length=30, unique=True)
     slug = models.SlugField(max_length=30, blank=True, null=True)
     sort = models.PositiveSmallIntegerField()
@@ -51,6 +60,9 @@ class PortfolioCategory(models.Model):
 
 
 class Photo(models.Model):
+    """
+        Model representing photos in the portfolio.
+    """
     category = models.ForeignKey(PortfolioCategory, on_delete=models.CASCADE, related_name='photo',
                                  null=True, blank=True)
     sort = models.PositiveSmallIntegerField()
@@ -66,6 +78,9 @@ class Photo(models.Model):
 
 
 class Team(models.Model):
+    """
+        Model representing team members.
+    """
     name = models.CharField(max_length=300, unique=True)
     description = RichTextField(blank=True, null=True)
     sort = models.PositiveSmallIntegerField()
@@ -81,6 +96,9 @@ class Team(models.Model):
 
 
 class Contact(models.Model):
+    """
+        Model representing contact form submissions.
+    """
     name = models.CharField(max_length=30, unique=True, blank=True, null=True)
     email = models.EmailField(null=True, blank=True)
     subject = models.TextField(blank=True, null=True)
@@ -99,6 +117,9 @@ class Contact(models.Model):
 
 
 class Newsletter(models.Model):
+    """
+        Model representing newsletter subscribers.
+    """
     email = models.EmailField(unique=True, blank=True, null=True)
 
     def __str__(self):

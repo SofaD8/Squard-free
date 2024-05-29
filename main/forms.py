@@ -3,6 +3,14 @@ from .models import Contact, Newsletter
 
 
 class ContactForm(forms.ModelForm):
+    """
+        Form for handling contact form submissions.
+        Attributes:
+            name (CharField): The name of the person submitting the form.
+            email (EmailField): The email address of the person submitting the form.
+            subject (CharField): The subject of the message.
+            message (Textarea): The content of the message.
+    """
     class Meta:
         model = Contact
         fields = ('name', 'email', 'subject', 'message')
@@ -30,6 +38,11 @@ class ContactForm(forms.ModelForm):
 
 
 class NewsletterForm(forms.ModelForm):
+    """
+        Form for handling newsletter subscriptions.
+        Attributes:
+            email (EmailField): The email address of the subscriber.
+    """
     class Meta:
         model = Newsletter
         fields = ('email',)
@@ -41,5 +54,10 @@ class NewsletterForm(forms.ModelForm):
         error_messages = {'email': {'required': 'Please enter your email'}}
 
     def clean_email(self):
+        """
+            Clean and validate the email address.
+            Returns:
+                 str: The cleaned email address.
+        """
         email = self.cleaned_data['email']
         return email
