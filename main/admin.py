@@ -39,6 +39,7 @@ class ServicesAdmin(admin.ModelAdmin):
 
 # ... (similar comments for other registered models)
 
+
 @admin.register(PortfolioCategory)
 class PortfolioCategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'sort', 'slug')
