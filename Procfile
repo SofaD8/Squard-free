@@ -1,0 +1,1 @@
+web: gunicorn squadfree.wsgi --log-file - --log-level debug
