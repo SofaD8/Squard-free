@@ -114,7 +114,7 @@ else:
         'PORT': os.environ.get('DB_PORT'),
     }
 
-    db_config = dj_database_url.config(default=DATABASES, conn_max_age=600, conn_health_checks=True)
+    db_config = dj_database_url.config(default=DATABASE_URL, conn_max_age=600, conn_health_checks=True)
     DATABASES['default'].update(db_config)
 
 # Password validation
