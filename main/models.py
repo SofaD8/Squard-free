@@ -38,6 +38,23 @@ class Services(models.Model):
         ordering = ['sort']
 
 
+class Counts(models.Model):
+    """
+        Model representing count of services offered by the company.
+    """
+    name = models.CharField(max_length=100, null=True, blank=True)
+    quantity = models.CharField(max_length=100, null=True, blank=True)
+    sort = models.PositiveSmallIntegerField()
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Count'
+        verbose_name_plural = 'Counts'
+        ordering = ['sort']
+
+
 class PortfolioCategory(models.Model):
     """
        Model representing categories for the portfolio.
@@ -74,6 +91,25 @@ class Photo(models.Model):
     class Meta:
         verbose_name = 'Photo'
         verbose_name_plural = 'Photos'
+        ordering = ['sort']
+
+
+class Testimonials(models.Model):
+    """
+        Model representing test imonials.
+    """
+    name = models.CharField(max_length=100, null=True, blank=True)
+    description = models.CharField(max_length=100, null=True, blank=True)
+    review = RichTextField(null=True, blank=True)
+    sort = models.PositiveSmallIntegerField()
+    photo = models.ImageField(upload_to='testimonials/', null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Testimonial'
+        verbose_name_plural = 'Testimonials'
         ordering = ['sort']
 
 

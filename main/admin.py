@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import About, Services, PortfolioCategory, Photo, Team, Contact, Newsletter
+from .models import About, Services, Counts, PortfolioCategory, Photo, Testimonials, Team, Contact, Newsletter
 from django.utils.safestring import mark_safe
 
 
@@ -40,6 +40,13 @@ class ServicesAdmin(admin.ModelAdmin):
 # ... (similar comments for other registered models)
 
 
+@admin.register(Counts)
+class CountsAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'quantity', 'sort')
+    list_editable = ('name', 'quantity')
+    search_fields = ('name',)
+
+
 @admin.register(PortfolioCategory)
 class PortfolioCategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'sort', 'slug')
@@ -59,7 +66,7 @@ class PhotoAdmin(admin.ModelAdmin):
         """
             Custom method to display a thumbnail of the photo in the admin list view.
             Args:
-                obj: The Team object.
+                obj: The Photo object.
             Returns:
                 str: An HTML image tag with the photo.
         """
@@ -67,6 +74,26 @@ class PhotoAdmin(admin.ModelAdmin):
             return mark_safe(f'<img src="{obj.photo.url}" width=50 height=50>')
 
     photo_src_tag.short_description = 'Photo'
+
+
+@admin.register(Testimonials)
+class TestimonialsAdmin(admin.ModelAdmin):
+    list_display = ('photo_src_tag', 'id', 'name', 'description', 'review', 'sort')
+    list_editable = ('name', 'description', 'review', 'sort')
+    search_fields = ('name',)
+
+    def photo_src_tag(self, obj):
+        """
+        Custom method to display a thumbnail of the photo in the admin list view.
+        Args:
+            obj: The Testimonials object.
+        Returns:
+             str: An HTML image tag with the testimonial photo.
+        """
+        if obj.photo:
+            return mark_safe(f'<img src="{obj.photo.url}" width=50 height=50>')
+
+    photo_src_tag.short_description = 'Testimonial'
 
 
 @admin.register(Team)
