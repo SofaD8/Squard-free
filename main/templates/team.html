@@ -13,7 +13,7 @@
                     <div class="member" data-aos="fade-up">
                         <div class="pic"><img src="{{ item.photo.url }}" class="img-fluid" alt=""></div>
                         <div class="member-info">
-                            <h4>{{ item.name }}</h4>
+                            <h4>{{ item.name|safe }}</h4>
                             <p>{{ item.description|safe }}</p>
                             <div class="social">
                                 <a href=""><i class="bi bi-twitter"></i></a>
