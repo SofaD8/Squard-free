@@ -1,7 +1,6 @@
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
       <div class="container">
-
         <div class="row no-gutters">
           <div class="content col-xl-5 d-flex align-items-stretch" data-aos="fade-up">
             <div class="content">
@@ -13,13 +12,13 @@
           <div class="col-xl-7 d-flex align-items-stretch">
             <div class="icon-boxes d-flex flex-column justify-content-center">
               <div class="row">
-                  {% for item in about %}
+                {% for item in about %}
                     <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
                         <i class="bx bx-receipt"></i>
                         <h4>{{ item.name|safe }}</h4>
                         <p>{{ item.description|safe }}</p>
                     </div>
-                  {% endfor %}
+                {% endfor %}
               </div>
             </div>
           </div><!-- End .content-->

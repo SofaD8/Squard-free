@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', get_random_secret_key())
 DATABASE_URL = os.environ.get('DATABASE_URL')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOSTS', '*')]
 
@@ -83,6 +83,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'main.context_processors.app_title',
+                'main.context_processors.app_hero_title',
+                'main.context_processors.app_hero',
+                'main.context_processors.app_about',
                 'main.context_processors.app_address',
                 'main.context_processors.app_phone',
                 'main.context_processors.app_contact',
@@ -90,7 +93,6 @@ TEMPLATES = [
                 'main.context_processors.app_title_cta',
                 'main.context_processors.app_cta',
                 'main.context_processors.app_button',
-                'main.context_processors.app_about',
             ],
         },
     },
